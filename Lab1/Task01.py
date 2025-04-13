@@ -1,11 +1,11 @@
-# Во всех заданиях данной подгруппы предполагается, что исходные строки, определяющие
-# # выражения, не содержат пробелов. При выполнении заданий не следует использовать оператор
-# # цикла. Вывести значение целочисленного выражения, заданного в виде строки S. Выражение определяется следующим образом:
-# <выражение> ::= <терм> | <выражение> + <терм> | <выражение> − <терм>
-# <терм> ::= <цифра> | <терм> * <цифра>
+"""Во всех заданиях данной подгруппы предполагается, что исходные строки, определяющие
+выражения, не содержат пробелов. При выполнении заданий не следует использовать оператор
+цикла. Вывести значение целочисленного выражения, заданного в виде строки S. Выражение определяется следующим образом:
+<выражение> ::= <терм> | <выражение> + <терм> | <выражение> − <терм>
+<терм> ::= <цифра> | <терм> * <цифра>
+"""
 
 
-# Разбирает терм
 def parse_term(s):
     digit = s[0]
     result = int(digit)
@@ -22,7 +22,6 @@ def parse_term(s):
         return result, remaining_s
 
 
-# Разбирает выражение
 def parse_expression(s):
     term_result, remaining_s = parse_term(s)
 
@@ -42,7 +41,7 @@ def parse_expression(s):
     #        return result - next_result
 
     if not (operator == "+" or operator == "-"):
-        return  # throw exception here
+        return  # FIXME: better to throw exception here
 
     remaining_s = remaining_s[1:]
     next_result = parse_expression(remaining_s)
@@ -52,12 +51,16 @@ def parse_expression(s):
         return result - next_result
 
 
-# Вычисляет значение целочисленного выражения, заданного в виде строки
 def evaluate_expression(s):
     return parse_expression(s)
 
 
-# print(evaluate_expression(str(input('Введите строку: '))))
-expression = input("Введите строку: ")
-result = evaluate_expression(expression)
-print(result)
+def main():
+    # print(evaluate_expression(str(input('Введите строку: '))))
+    expression = input("Введите строку: ")
+    result = evaluate_expression(expression)
+    print(result)
+
+
+if __name__ == "__main__":
+    main()
