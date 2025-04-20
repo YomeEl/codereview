@@ -1,59 +1,63 @@
 """
 Dynamic74.
-Даны ссылки A1 и A2 на барьерный и текущий элементы двусвязного списка(о списке с барьерным элементом см. задание Dynamic70).
-Также дано число N(>0) инабориз N чисел. Описать класс IntListB, содержащий следующие члены:
-• закрытые поля barrier и current типа Node (барьерный и текущий элементысписка);
-• конструктор с параметрами aBarrier и aCurrent — барьерным и текущим элементами существующего списка;
-• процедура InsertLast(D), которая добавляет новый элемент со значением D в конец списка (D — входной параметр целого типа, добавленный элемент становится текущим);
-• процедура Put (без параметров), которая выводит ссылку на поле current, используя метод Put класса PT.
-С помощью метода InsertLast добавить в конец исходного списка данный набор чисел(втомже порядке) и вывести сссылку на текущий элемент полученного списка,
-используя для этого метод Put класса IntListB.
+Даны ссылки A1 и A2 на барьерный и текущий элементы двусвязного списка
+(о списке с барьерным элементом см. задание Dynamic70).
+Также дано число N(>0) и набор из N чисел. Описать класс IntListB, содержащий следующие члены:
+• закрытые поля barrier и current типа Node (барьерный и текущий элементы списка);
+• конструктор с параметрами a_barrier и a_current — барьерным и текущим элементами
+  существующего списка;
+• процедура insert_last(d), которая добавляет новый элемент со значением d в конец списка
+  (d — входной параметр целого типа, добавленный элемент становится текущим);
+• процедура put (без параметров), которая выводит ссылку на поле current,
+  используя метод put класса IntListB.
+С помощью метода insert_last добавить в конец исходного списка данный набор чисел(в том же порядке)
+и вывести сссылку на текущий элемент полученного списка, используя для этого
+метод put класса IntListB.
 """
 
-# Класс узла двусвязного списка
+
 class Node:
     def __init__(self, value=None):
-        self.value = value  # Значение узла
-        self.next = None  # Ссылка на следующий узел
-        self.prev = None  # Ссылка на предыдущий узел
+        self.value = value
+        self.next = None
+        self.prev = None
 
-# Класс двусвязного списка с барьерным элементом
+
 class IntListB:
-    def __init__(self, aBarrier, aCurrent):
-        # Инициализация списка с барьерным элементом и текущим элементом
-        self.barrier = aBarrier  # Барьерный элемент
-        self.current = aCurrent  # Текущий элемент
+    def __init__(self, a_barrier, a_current):
+        self.barrier = a_barrier
+        self.current = a_current
 
-    # Процедура вставки элемента в конец списка
-    def InsertLast(self, D):
-        new_node = Node(D)  # Создаём новый узел
-        last = self.barrier.prev  # Последний элемент перед барьером
-        last.next = new_node  # Предыдущий последний элемент указывает на новый
-        new_node.prev = last  # Новый узел указывает на последний элемент
-        new_node.next = self.barrier  # Новый узел указывает на барьер
-        self.barrier.prev = new_node  # Барьер указывает на новый последний элемент
-        self.current = new_node  # Новый элемент становится текущим
+    def insert_last(self, d):
+        new_node = Node(d)
+        last = self.barrier.prev
+        last.next = new_node
+        new_node.prev = last
+        new_node.next = self.barrier
+        self.barrier.prev = new_node
+        self.current = new_node
 
-    # Процедура вывода ссылки на текущий элемент
-    def Put(self):
-        print(f"Текущий элемент: {self.current.value}")
+    def put(self):
+        print(f"Ссылка на текущий элемент: {self.current}")
 
-# Создание барьерного элемента
-barrier = Node(0)  # Барьерный элемент имеет произвольное значение (например, 0)
-barrier.next = barrier  # Барьер указывает сам на себя
-barrier.prev = barrier  # Барьер указывает сам на себя
 
-# Создание текущего элемента, который будет равен барьеру в начале
-current = barrier
+def main():
+    barrier = Node(0)
+    barrier.next = barrier
+    barrier.prev = barrier
 
-# Создание списка с барьером и текущим элементом
-dllb = IntListB(barrier, current)
+    current = barrier
 
-dllb.InsertLast(10)
-dllb.InsertLast(20)
-dllb.InsertLast(30)
-dllb.InsertLast(40)
-dllb.InsertLast(50)
+    the_list = IntListB(barrier, current)
 
-# Вывод текущего элемента после вставки всех элементов
-dllb.Put()  # 50
+    the_list.insert_last(10)
+    the_list.insert_last(20)
+    the_list.insert_last(30)
+    the_list.insert_last(40)
+    the_list.insert_last(50)
+
+    the_list.put()
+
+
+if __name__ == "__main__":
+    main()
