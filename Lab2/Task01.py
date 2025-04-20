@@ -38,9 +38,11 @@ def create_stack():
 
 def main():
     top_node = create_stack()
-    if top_node != None:
-        print("Ссылка на вершину стека:", top_node)
-        print("Значение вершины стека:", top_node.data)
+    if top_node is None:
+        return
+    
+    print("Ссылка на вершину стека:", top_node)
+    print("Значение вершины стека:", top_node.data)
 
 
 if __name__ == "__main__":
