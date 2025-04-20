@@ -1,76 +1,68 @@
 """Дан набор из 10 чисел. Создать очередь, содержащую данные числа в
 указанном порядке (первое число будет размещаться в  начале очереди,
-последнее — в конце), и вывести ссылки A1 и A2 на начало и конец очереди."""
+последнее — в конце), и вывести ссылки A1 и A2 на начало и конец очереди.
+"""
+
+
+class EmptyQueueError(Exception):
+    def __init__(self):
+        super().__init__("Очередь пуста")
 
 
 class Node:
-    """Класс узла очереди"""
-
     def __init__(self, data):
-        self.data = data  # Значение узла
-        self.next = None  # Ссылка на следующий узел
+        self.data = data
+        self.next = None
 
 
 class Queue:
-    """Класс динамической очереди"""
-
     def __init__(self):
-        self.front = None  # Начало очереди (A1)
-        self.rear = None  # Конец очереди (A2)
+        self.first = None
+        self.last = None
 
-    def IsEmpty(self):
-        """Проверка, пустая ли очередь"""
-        return self.front is None
+    def is_empty(self):
+        return self.first is None
 
-    def Enqueue(self, value):
-        """Добавление элемента в конец очереди"""
+    def enqueue(self, value):
         new_node = Node(value)
-        if self.IsEmpty():
-            self.front = self.rear = new_node  # Если очередь была пустой
+        if self.is_empty():
+            self.first = self.last = new_node
         else:
-            self.rear.next = new_node  # Привязываем новый узел к последнему
-            self.rear = new_node  # Обновляем конец очереди
+            self.last.next = new_node
+            self.last = new_node
 
-    def Dequeue(self):
-        """Удаление элемента из начала очереди"""
-        if self.IsEmpty():
-            raise IndexError("Очередь пуста")
+    def dequeue(self):
+        if self.is_empty():
+            raise EmptyQueueError()
 
-        value = self.front.data
-        self.front = self.front.next  # Смещаем начало очереди
+        value = self.first.data
+        self.first = self.first.next
 
-        if self.front is None:  # Если очередь стала пустой
-            self.rear = None
+        if self.first is None:
+            self.last = None
 
         return value
 
-    def Front(self):
-        """Возвращает первый элемент очереди без удаления"""
-        if self.IsEmpty():
-            raise IndexError("Очередь пуста")
-        return self.front.data
+    def front(self):
+        if self.is_empty():
+            raise EmptyQueueError()
+        return self.first.data
 
-    def Rear(self):
-        """Возвращает последний элемент очереди без удаления"""
-        if self.IsEmpty():
-            raise IndexError("Очередь пуста")
-        return self.rear.data
+    def rear(self):
+        if self.is_empty():
+            raise EmptyQueueError()
+        return self.last.data
 
-    def PrintQueue(self):
-        """Вывод очереди (от начала к концу)"""
-        current = self.front
+    def print_queue(self):
+        current = self.first
         print("Очередь (начало -> конец):", end=" ")
         while current:
             print(current.data, end=" ")
             current = current.next
         print()
 
-    def PrintQueueVisual(self):
-        """Красивый вывод очереди в виде стрелочек"""
-        current = self.front
-        if self.IsEmpty():
-            print("Очередь пуста!")
-            return
+    def print_queue_visual(self):
+        current = self.first
         output = []
         while current:
             output.append(f"[{current.data}]")
@@ -78,17 +70,21 @@ class Queue:
         print(" → ".join(output))
 
 
-# === ОСНОВНОЙ КОД ===
-queue = Queue()
+def main():
+    queue = Queue()
 
-# Ввод 10 чисел от пользователя
-numbers = list(map(int, input("Введите 10 чисел через пробел: ").split()))
+    numbers = list(map(int, input("Введите 10 чисел через пробел: ").split()))
 
-# Добавляем числа в очередь
-for num in numbers:
-    queue.Enqueue(num)
+    for num in numbers:
+        queue.enqueue(num)
 
-# Вывод результатов
-queue.PrintQueueVisual()
-print(f"Ссылка на начало (A1): {queue.front} (значение: {queue.Front()})")
-print(f"Ссылка на конец (A2): {queue.rear} (значение: {queue.Rear()})")
+    try:
+        queue.print_queue_visual()
+        print(f"Ссылка на начало (A1): {queue.first} (значение: {queue.front()})")
+        print(f"Ссылка на конец (A2): {queue.last} (значение: {queue.rear()})")
+    except EmptyQueueError as error:
+        print("Ошибка:", str(error))
+
+
+if __name__ == "__main__":
+    main()
