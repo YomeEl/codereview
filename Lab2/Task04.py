@@ -112,7 +112,7 @@ class LinkedList:
         index = self.find_index(data)
         self.remove_at_index(index)
 
-    def print_list(self):
+    def print(self):
         current_node = self.head
         while current_node:
             print(current_node.data)

@@ -1,5 +1,4 @@
-"""
-Даны ссылки A1 и A2 на первый и последний элементы непустого двусвязного списка,
+"""Даны ссылки A1 и A2 на первый и последний элементы непустого двусвязного списка,
 содержащего четное количество элементов.
 Преобразовать список в два циклических списка (записав в свойство Next последнего
 элемента списка ссылку на его первый элемент, а в свойство Prev первого элемента —
@@ -40,7 +39,7 @@ class DoublyLinkedList:
             new_node.prev = self.last
             self.last = new_node
 
-    def print_list(self, head, is_circular=False):
+    def print(self, head, is_circular=False):
         if head is None:
             print("Empty list")
             return
@@ -83,12 +82,6 @@ class DoublyLinkedList:
 
         return first_half_head, second_half_head, a3, a4
 
-    def print(self):
-        current_node = self.first
-        while current_node:
-            print(current_node.data)
-            current_node = current_node.next
-
 
 def main():
     dll = DoublyLinkedList()
@@ -96,14 +89,14 @@ def main():
         dll.push(i)
 
     print("Исходный список:")
-    dll.print_list(dll.first)
+    dll.print(dll.first)
 
     C1, C2, A3, A4 = dll.split_into_circular_lists()
 
     print("Первый циклический список:")
-    dll.print_list(C1, is_circular=True)
+    dll.print(C1, is_circular=True)
     print("Второй циклический список:")
-    dll.print_list(C2, is_circular=True)
+    dll.print(C2, is_circular=True)
 
     print("Средние элементы исходного списка:")
     print("A3:", A3.data if A3 else "null")

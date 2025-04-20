@@ -1,5 +1,4 @@
-"""
-Dynamic74.
+"""Dynamic74.
 Даны ссылки A1 и A2 на барьерный и текущий элементы двусвязного списка
 (о списке с барьерным элементом см. задание Dynamic70).
 Также дано число N(>0) и набор из N чисел. Описать класс IntListB, содержащий следующие члены:
@@ -48,15 +47,15 @@ def main():
 
     current = barrier
 
-    the_list = IntListB(barrier, current)
+    linked_list = IntListB(barrier, current)
 
-    the_list.insert_last(10)
-    the_list.insert_last(20)
-    the_list.insert_last(30)
-    the_list.insert_last(40)
-    the_list.insert_last(50)
+    linked_list.insert_last(10)
+    linked_list.insert_last(20)
+    linked_list.insert_last(30)
+    linked_list.insert_last(40)
+    linked_list.insert_last(50)
 
-    the_list.put()
+    linked_list.put()
 
 
 if __name__ == "__main__":
