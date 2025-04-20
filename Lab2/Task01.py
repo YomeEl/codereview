@@ -3,10 +3,12 @@
 и вывести ссылку на его вершину.
 """
 
+
 class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
+
 
 class Stack:
     def __init__(self):
@@ -20,14 +22,26 @@ class Stack:
     def peek(self):
         return self.top
 
+
 def create_stack():
-    N = int(input("Введите количество чисел (N > 0): "))
+    n = int(input("Введите количество чисел (N > 0): "))
+    if n <= 0:
+        # better to throw exception
+        print("Введённое число <= 0")
+        return None
     stack = Stack()
-    for _ in range(N):
+    for _ in range(n):
         num = int(input())
         stack.push(num)
     return stack.peek()
 
-top_node = create_stack()
-print("Ссылка на вершину стека:", top_node)
-print("Значение вершины стека:", top_node.data)
+
+def main():
+    top_node = create_stack()
+    if top_node != None:
+        print("Ссылка на вершину стека:", top_node)
+        print("Значение вершины стека:", top_node.data)
+
+
+if __name__ == "__main__":
+    main()
