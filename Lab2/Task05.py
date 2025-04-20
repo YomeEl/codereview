@@ -90,20 +90,25 @@ class DoublyLinkedList:
             current_node = current_node.next
 
 
-dll = DoublyLinkedList()
-for i in range(1, 7):
-    dll.push(i)
+def main():
+    dll = DoublyLinkedList()
+    for i in range(1, 7):
+        dll.push(i)
 
-print("Исходный список:")
-dll.print_list(dll.first)
+    print("Исходный список:")
+    dll.print_list(dll.first)
 
-C1, C2, A3, A4 = dll.split_into_circular_lists()
+    C1, C2, A3, A4 = dll.split_into_circular_lists()
 
-print("Первый циклический список:")
-dll.print_list(C1, is_circular=True)
-print("Второй циклический список:")
-dll.print_list(C2, is_circular=True)
+    print("Первый циклический список:")
+    dll.print_list(C1, is_circular=True)
+    print("Второй циклический список:")
+    dll.print_list(C2, is_circular=True)
 
-print("Средние элементы исходного списка:")
-print("A3:", A3.data if A3 else "null")
-print("A4:", A4.data if A4 else "null")
+    print("Средние элементы исходного списка:")
+    print("A3:", A3.data if A3 else "null")
+    print("A4:", A4.data if A4 else "null")
+
+
+if __name__ == "__main__":
+    main()
