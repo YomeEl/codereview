@@ -1,5 +1,13 @@
-# Дан односвязный линейный список и указатель на голову списка P1.
-# Необходимовывести указатель на шестой элемент этого списка P6. Известно, что в исходномспискенеменее 6 элементов
+"""Дан односвязный линейный список и указатель на голову списка P1.
+Необходимо вывести указатель на шестой элемент этого списка P6.
+Известно, что в исходном списке не менее 6 элементов
+"""
+
+
+class BadIndexError(Exception):
+    def __init__(self, index):
+        super().__init__(f"Index {index} not present")
+
 
 class Node:
     def __init__(self, data=None, next=None):
@@ -13,14 +21,21 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.tail = None
+        self.length = 0
 
     def push(self, new_data):
+        self.length += 1
         new_node = Node(new_data)
-        new_node.next = self.head
-        self.head = new_node
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+            return
+        self.tail.next = new_node
+        self.tail = new_node
 
-    # добавление элемента в начало списка:
-    def insertAtBegin(self, data):
+    def prepend(self, data):
+        self.length += 1
         new_node = Node(data)
         if self.head is None:
             self.head = new_node
@@ -29,110 +44,97 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node
 
-    # BCTABKA В ЗАДАННУЮ ПОЗИЦИЮ
-    def insertAtIndex(self, data, index):
-        new_node = Node(data)
-        current_node = self.head
-        position = 0
-        if position == index:
-            self.insertAtBegin(data)
-        else:
-            while (current_node != None and position + 1 != index):
-                position = position + 1
-                current_node = current_node.next
-            if current_node != None:
-                new_node.next = current_node.next
-                current_node.next = new_node
-            else:
-                print("Index not present")
+    def find_node(self, index):
+        if index < 0:
+            raise BadIndexError(index)
 
-    # ВСТАВКА B КОНЕЦ СПИСКА
-    def insertAtEnd(self, data):
-        new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
-            return
         current_node = self.head
-        while (current_node.next):
+        for _ in range(index):
             current_node = current_node.next
-        current_node.next = new_nod
+            if current_node is None:
+                raise BadIndexError(index)
+        return current_node
 
-    # ИЗМЕНЕНИЕ ЗНАЧЕНИЯ УЗЛА В УКАЗАННОЙ ПОЗИЦИИ
-    def updateNode(self, val, index):
+    def find_index(self, data):
         current_node = self.head
-        position = 0
-        if position == index:
-            current_node.data = val
-        else:
-            while (current_node != None and position != index):
-                position = position + 1
-                current_node = current_node.next
-            if current_node != None:
-                new_node.next = current_node.next
-                current_node.data = val
-            else:
-                print("Index not present")
+        for i in range(self.length):
+            if current_node.data == data:
+                return i
+            current_node = current_node.next
+        return -1
 
-    # УДАЛЕНИЕ УЗЛА — ПЕРВОГО ИЛИ ПОСЛЕДНЕГО
+    def insert_at_index(self, data, index):
+        if (self.head is None and index != 0) or index < 0:
+            raise BadIndexError(index)
+
+        if index == 0:
+            self.prepend(data)
+            return
+
+        new_node = Node(data)
+        previous_node = self.find_node(index - 1)
+        current_node = previous_node.next
+        previous_node.next = new_node
+        new_node.next = current_node
+        self.length += 1
+
+    def update_node(self, value, index):
+        node = self.find_node(index)
+        node.data = value
+
     def remove_first_node(self):
-        if (self.head == None):
+        if self.head == None:
             return
         self.head = self.head.next
+        self.length -= 1
 
     def remove_last_node(self):
         if self.head is None:
             return
-        current_node = self.head
-        while (current_node.next.next):
-            current_node = current_node.next
-        current_node.next = None
+        new_last = self.find_node(self.length - 1)
+        new_last.next = None
+        self.length -= 1
 
-    ##    УДАЛЕНИЕ УЗЛА ПО ИНДЕКСУ
     def remove_at_index(self, index):
-        if self.head == None:
+        if self.head is None:
             return
-        current_node = self.head
-        position = 0
-        if position == index:
+        if index >= self.length or index < 0:
+            raise BadIndexError(index)
+        if index == 0:
             self.remove_first_node()
-        else:
-            while (current_node != None and position + l != index):
-                position = position + 1
-                current_node = current_node.next
-            if current_node != None:
-                current_node.next = current_node.next.next
-            else:
-                print("Index not рrеsеnt")
+            return
 
-    # УДАЛЕНИЕ УЗЛА NO ЗНАЧЕНИЮ
+        prev = self.find_node(index - 1)
+        prev.next = prev.next.next
+        self.length -= 1
+
     def remove_node(self, data):
-        current_node = self.head
-        if current_node.data == data:
-            self.remove_first_node()
-            return
-        while (current_node != None and current_node.next.data != data):
-            current_node = current_node.next
-        if current_node == None:
-            return
-        else:
-            current_node.next = current_node.next.next
+        index = self.find_index(data)
+        self.remove_at_index(index)
 
-    ##    ОБХОД СПИСКА
-
-    def printLL(self):
+    def print_list(self):
         current_node = self.head
-        while (current_node):
+        while current_node:
             print(current_node.data)
             current_node = current_node.next
 
 
-node1 = Node("A")
-node2 = Node("B")
-node3 = Node("C")
-node1.next = node2
-node2.next = node3
-print(node1.next)
-d = LinkedList()
-d.push(node1)
-d.insertAtBegin(node2)
-d.printLL()
+def init_list(length):
+    the_list = LinkedList()
+    for i in range(length):
+        the_list.push(i + 1)
+    return the_list
+
+
+LENGTH = 8
+INDEX_TO_FIND = 5
+
+
+def main():
+    the_list = init_list(LENGTH)
+    sixth_node = the_list.find_node(INDEX_TO_FIND)
+    print(f"Шестой элемент списка: {repr(sixth_node)}")
+
+
+if __name__ == "__main__":
+    main()
