@@ -1,0 +1,13 @@
+<solution>
+    <file>final.py</file>
+    <description>Выполняет топологическую сортировку графа, заданного матрицей смежности.</description>
+    <functions>
+        <function name="topological_sort">
+            <summary>Выполняет топологическую сортировку</summary>
+            <params>
+                <param name="filename" type="string">Путь к файлу с матрицей смежности</param>
+            </params>
+            <returns type="string">Номера вершин графа в топологическом порядке через запятую или "No solution", если выполнить сортировку не удалось</returns>
+        </function>
+    </functions>
+</solution>

@@ -1,0 +1,34 @@
+<solution>
+    <file>final.py</file>
+    <description>Строит дерево выражения, заданного в обратной польской записи. Заменяет в нём все поддеревья умножения на их результат.</description>
+    <functions>
+        <function name="build_tree">
+            <summary>Строит дерево выражения из токенов</summary>
+            <params>
+                <param name="tokens" type="string[]">Последовательность токенов</param>
+            </params>
+            <returns type="Node">Вершина дерева выражения</returns>
+        </function>
+		<function name="evaluate">
+            <summary>Вычисляет значение выражения, представленного деревом</summary>
+            <params>
+                <param name="node" type="Node">Вершина дерева</param>
+            </params>
+            <returns type="number">Значение выражения</returns>
+        </function>
+		<function name="remove_multiplication">
+            <summary>Заменяет поддеревья умножения в дереве на их результат</summary>
+            <params>
+                <param name="node" type="Node">Вершина дерева</param>
+            </params>
+            <returns type="Node">Вершина результирующего дерева</returns>
+        </function>
+		<function name="solve">
+            <summary>Читает из файла последовательность токенов, строит дерево выражения и заменяет в нём поддеревья умножения на их результат</summary>
+            <params>
+                <param name="filename" type="string">Путь к файлу с токенами</param>
+            </params>
+            <returns type="Node">Вершина результирующего дерева</returns>
+        </function>
+    </functions>
+</solution>
