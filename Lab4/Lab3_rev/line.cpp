@@ -3,44 +3,44 @@
 #include <math.h>
 
 Line::Line(Point* from, Point* to) 
-    : _from(from), _to(to), _ownsFrom(false), _ownsTo(false) {}
+    : from_(from), to_(to), ownsFrom_(false), ownsTo_(false) {}
 
-Line::Line(double x1, double y1, double x2, double y2) : _ownsFrom(true), _ownsTo(true) {
-    _from = new Point(x1, y1);
-    _to = new Point(x2, y2);
+Line::Line(double x1, double y1, double x2, double y2) : ownsFrom_(true), ownsTo_(true) {
+    from_ = new Point(x1, y1);
+    to_ = new Point(x2, y2);
 }
 
 Line::~Line() {
-    if (_ownsFrom) delete _from;
-    if (_ownsTo) delete _to;
+    if (ownsFrom_) delete from_;
+    if (ownsTo_) delete to_;
 }
 
 Point* Line::from() const {
-    return _from;
+    return from_;
 }
 
 Point* Line::to() const {
-    return _to;
+    return to_;
 }
 
-void Line::setFrom(Point* from) {
-    _from = from;
+void Line::set_from(Point* from) {
+    from_ = from;
 }
 
-void Line::setTo(Point* to) {
-    _to = to;
+void Line::set_to(Point* to) {
+    to_ = to;
 }
 
 #define sqr(x) (x) * (x)
 double Line::length() const {
-    return sqrt(sqr(_from->x() - _to->x()) + sqr(_from->y() - _to->y()));
+    return sqrt(sqr(from_->x() - to_->x()) + sqr(from_->y() - to_->y()));
 }
 #undef sqr
 
-size_t Line::truncatedLength() const {
+size_t Line::truncated_length() const {
     return static_cast<size_t>(length());
 }
 
 std::wstring Line::print() const {
-    return L"Линия от " + _from->print() + L" до " + _to->print();
+    return L"Линия от " + from_->print() + L" до " + to_->print();
 }

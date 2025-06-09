@@ -1,20 +1,20 @@
 #include "path.h"
 
-Path::Path() : _size(1), _count(0) {
-    _points = new Point*[1];
+Path::Path() : size_(1), count_(0) {
+    points_ = new Point*[1];
 }
 
 Path::Path(Point **points, size_t count) {
-    _size = count;
-    _points = new Point*[_size];
-    _count = count;
+    size_ = count;
+    points_ = new Point*[size_];
+    count_ = count;
     for (size_t i = 0; i < count; i++) {
-        _points[i] = points[i];
+        points_[i] = points[i];
     }
 }
 
 Path::~Path() {
-    delete[] _points;
+    delete[] points_;
 }
 
 void Path::append(Point *point) {
@@ -22,46 +22,46 @@ void Path::append(Point *point) {
 }
 
 Point *Path::operator[](const size_t index) {
-    if (index >= _count) return nullptr;
-    return _points[index];
+    if (index >= count_) return nullptr;
+    return points_[index];
 }
 
 size_t Path::count() const {
-    return _count;
+    return count_;
 }
 
 Point *Path::first() const {
-    if (_count == 0) return nullptr;
-    return _points[0];
+    if (count_ == 0) return nullptr;
+    return points_[0];
 }
 
 Point *Path::last() const {
-    if (_count == 0) return nullptr;
-    return _points[_count - 1];
+    if (count_ == 0) return nullptr;
+    return points_[count_ - 1];
 }
 
 std::wstring Path::print() const {
     std::wstring result = L"[";
-    for (size_t i = 0; i < _count; i++)
+    for (size_t i = 0; i < count_; i++)
     {
-        result += _points[i]->print() + L", ";
+        result += points_[i]->print() + L", ";
     }
 
     return result.substr(0, result.length() - 2) + L"]";
 }
 
 void Path::insert(Point *point) {
-    if (_count == _size) grow();
-    _points[_count++] = point;
+    if (count_ == size_) grow();
+    points_[count_++] = point;
 }
 
 void Path::grow() {
-    Point ** newArray = new Point*[_size * 2];
-    for (size_t i = 0; i < _count; i++)
+    Point ** new_array = new Point*[size_ * 2];
+    for (size_t i = 0; i < count_; i++)
     {
-        newArray[i] = _points[i];
+        new_array[i] = points_[i];
     }
-    delete[] _points;
-    _points = newArray;
-    _size *= 2;
+    delete[] points_;
+    points_ = new_array;
+    size_ *= 2;
 }

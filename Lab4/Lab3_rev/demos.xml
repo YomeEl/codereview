@@ -1,0 +1,31 @@
+<solution>
+    <file>demos.h</file>
+    <description>Определяет пространство имён с функциями запуска тестов</description>
+    <functions>
+        <function name="read_point">
+            <summary>Считывает из консоли точку</summary>
+            <params>
+                <param name="hint" type="wstring">Подсказка для пользователя</param>
+            </params>
+            <returns type="Point">Прочитанная точка</returns>
+        </function>
+		<function name="point_demo">
+            <summary>Демонстрация задания 1</summary>
+        </function>
+		<function name="line_demo">
+            <summary>Демонстрация задания 2</summary>
+        </function>
+		<function name="path_demo">
+            <summary>Демонстрация задания 3</summary>
+        </function>
+		<function name="create_point_demo">
+            <summary>Демонстрация задания 4</summary>
+        </function>
+		<function name="create_line_demo">
+            <summary>Демонстрация задания 5</summary>
+        </function>
+		<function name="line_length_demo">
+            <summary>Демонстрация задания 6</summary>
+        </function>
+    </functions>
+</solution>

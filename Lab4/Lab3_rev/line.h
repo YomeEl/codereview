@@ -15,20 +15,20 @@ public:
     Point* from() const;
     Point* to() const;
 
-    void setFrom(Point* from);
-    void setTo(Point* to);
+    void set_from(Point* from);
+    void set_to(Point* to);
 
     double length() const;
-    size_t truncatedLength() const; 
+    size_t truncated_length() const; 
 
     std::wstring print() const;
 
 private:
-    Point* _from;
-    Point* _to;
+    Point* from_;
+    Point* to_;
 
-    bool _ownsFrom;
-    bool _ownsTo;
+    bool ownsFrom_;
+    bool ownsTo_;
 };
 
 #endif // !LINE_H

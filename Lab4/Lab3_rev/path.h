@@ -27,9 +27,9 @@ private:
     void grow();
 
 private:
-    size_t _size;
-    size_t _count;
-    Point **_points;
+    size_t size_;
+    size_t count_;
+    Point **points_;
 };
 
 #endif // !PATH_H

@@ -1,28 +1,28 @@
 #include "point.h"
 
-Point::Point() : _x(0), _y(0) {}
+Point::Point() : x_(0), y_(0) {}
 
 Point::Point(const Point &other) {
-    _x = other._x;
-    _y = other._y;
+    x_ = other.x_;
+    y_ = other.y_;
 }
 
-Point::Point(double x, double y) : _x(x), _y(y) {}
+Point::Point(double x, double y) : x_(x), y_(y) {}
 
 double Point::x() const {
-    return _x;
+    return x_;
 }
 double Point::y() const {
-    return _y;
+    return y_;
 }
 
-void Point::setX(double x) {
-    _x = x;
+void Point::set_x(double x) {
+    x_ = x;
 }
-void Point::setY(double y) {
-    _y = y;
+void Point::set_y(double y) {
+    y_ = y;
 }
 
 std::wstring Point::print() const {
-    return L"{" + std::to_wstring(_x) + L", " + std::to_wstring(_y) + L"}";
+    return L"{" + std::to_wstring(x_) + L", " + std::to_wstring(y_) + L"}";
 }

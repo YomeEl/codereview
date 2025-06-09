@@ -12,14 +12,14 @@ public:
     double x() const;
     double y() const;
 
-    void setX(double x);
-    void setY(double y);
+    void set_x(double x);
+    void set_y(double y);
     
     std::wstring print() const;
     
 private: 
-    double _x;
-    double _y;
+    double x_;
+    double y_;
 };
 
 #endif // !POINT_H
