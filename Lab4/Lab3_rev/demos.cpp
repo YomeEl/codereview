@@ -1,13 +1,12 @@
 #include "demos.h"
 
+#include <iostream>
+
 #include "point.h"
 #include "line.h"
 #include "path.h"
 
-#include <iostream>
-
-void demos::pointDemo()
-{
+void demos::pointDemo() {
     Point a(1, 1);
     Point b(2, 2);
     Point c(3, 3);
@@ -15,8 +14,7 @@ void demos::pointDemo()
     std::wcout << L"A: " << a.print() << L"\nB: " << b.print() << L"\nC: " << c.print() << std::endl;
 }
 
-void demos::lineDemo()
-{
+void demos::lineDemo() {
     Point line1From(1, 3);
     Point line1To(23, 8);
     Point line2From(5, 10);
@@ -56,8 +54,7 @@ void demos::lineDemo()
         << L"\n\t3: " << line3.print() << std::endl;
 }
 
-void demos::pathDemo()
-{
+void demos::pathDemo() {
     Point pBegin(1, 5);
     Point pEnd(5, 3);
 
@@ -77,16 +74,18 @@ void demos::pathDemo()
     path2.append(&pEnd);
 
     std::wcout << L"Начальное состояние ломаных\n";
-    std::wcout << L"\t1: " << path1.print() << L"\n\t2: " << path2.print() << std::endl;
+    std::wcout << 
+        L"\t1: " << path1.print() << L"\n\t2: " << path2.print() << L"\n";
 
-    std::wcout << L"Сдвигаем начало первой ломаной в точку {0, 1}\n";
+    std::wcout << 
+        L"Сдвигаем начало первой ломаной в точку {0, 1}\n";
     path1.first()->setX(0);
     path1.first()->setY(1);
-    std::wcout << L"\t1: " << path1.print() << L"\n\t2: " << path2.print() << std::endl;
+    std::wcout << 
+        L"\t1: " << path1.print() << L"\n\t2: " << path2.print() << L"\n";
 }
 
-void demos::createPointDemo()
-{
+void demos::createPointDemo() {
     Point a(3, 5);
     std::wcout << a.print() << std::endl;
     Point b(25, 6);
@@ -95,8 +94,7 @@ void demos::createPointDemo()
     std::wcout << c.print() << std::endl;
 }
 
-void demos::createLineDemo()
-{
+void demos::createLineDemo() {
     Line line1(1, 3, 23, 8);
     Line line2(5, 10, 25, 10);
     Line line3(line1.from(), line2.to());
@@ -131,10 +129,10 @@ void demos::createLineDemo()
         << L"\n\t3: " << line3.print() << std::endl;
 }
 
-void demos::lineLengthDemo()
-{
+void demos::lineLengthDemo() {
     Line line(1,1,10,15);
     std::wcout << line.print() << std::endl;
     std::wcout << L"Длина линии: " << line.length() << std::endl;
-    std::wcout << L"Целая часть длины линии: " << line.truncatedLength() << std::endl;
+    std::wcout 
+        << L"Целая часть длины линии: " << line.truncatedLength() << std::endl;
 }

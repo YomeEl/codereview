@@ -2,11 +2,10 @@
 #define PATH_H
 
 #include <string>
+
 #include "point.h"
 
-// Does't take ownership
-class Path
-{
+class Path {
 public:
     Path();
     Path(Point **points, size_t count);

@@ -2,11 +2,10 @@
 #define LINE_H
 
 #include <string>
+
 #include "point.h"
 
-// Does't take ownership
-class Line
-{
+class Line {
 public:
     Line(Point* from, Point* to);
     Line(double x1, double y1, double x2, double y2);
@@ -22,7 +21,7 @@ public:
     double length() const;
     size_t truncatedLength() const; 
 
-    std::wstring print();
+    std::wstring print() const;
 
 private:
     Point* _from;

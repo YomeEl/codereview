@@ -3,8 +3,7 @@
 
 #include <string>
 
-class Point
-{
+class Point {
 public:
     Point();
     Point(const Point &other);

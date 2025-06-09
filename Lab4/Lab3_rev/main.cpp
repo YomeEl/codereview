@@ -4,13 +4,12 @@
 
 #include "demos.h"
 
-enum class Task
-{ 
-    Point, Line, Path, CreatePoint, CreateLine, LineLength, EXIT, ERR_TASK
+enum class Task { 
+    Point, Line, Path, CreatePoint, CreateLine, LineLength, 
+    EXIT, ERR_TASK
 };
 
-std::map<Task, std::wstring> texts 
-{
+std::map<Task, std::wstring> texts {
     { Task::Point, L"1\tТочка координат" },
     { Task::Line, L"2\tПрямая" },
     { Task::Path, L"3\tЛоманая" },
@@ -19,22 +18,18 @@ std::map<Task, std::wstring> texts
     { Task::LineLength, L"5\tДлина линии" }
 };
 
-Task selectTask(const std::wstring selection)
-{
+Task selectTask(const std::wstring selection) {
     if (selection == L"-1") return Task::EXIT;
-    for (const auto &pair : texts)
-    {
+    for (const auto &pair : texts) {
         size_t tabIndex = pair.second.find(L"\t");
         if (pair.second.substr(0, tabIndex) == selection) return pair.first;
     }
     return Task::ERR_TASK;
 }
 
-std::wstring showMainPage()
-{
+std::wstring showMainPage() {
     std::wcout << L"Номер\tНазвание\n";
-    for (const auto &pair : texts)
-    {
+    for (const auto &pair : texts) {
         std::wcout << pair.second << std::endl;
     }
     std::wcout << L"Введите номер задачи или -1, чтобы выйти: ";
@@ -43,10 +38,8 @@ std::wstring showMainPage()
     return selection;
 }
 
-void runDemo(Task task)
-{
-    switch (task)
-    {
+void runDemo(Task task) {
+    switch (task) {
     case Task::Point: 
         demos::pointDemo();
         break;
@@ -71,13 +64,15 @@ void runDemo(Task task)
     system("pause");
 }
 
-int main()
-{
+void manualInput() {
+
+}
+
+int main() {
     system("chcp 1251");
     setlocale(LC_ALL, "ru-RU");
 
-    while (true)
-    {
+    while (true) {
         std::wstring selection = showMainPage();
         Task task = selectTask(selection);
         if (task == Task::EXIT) break;
