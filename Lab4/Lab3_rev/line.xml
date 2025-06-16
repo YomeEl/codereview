@@ -2,6 +2,37 @@
     <file>line.h</file>
     <description>Описывает класс Отрезок</description>
     <functions>
-        <!--TODO-->
+        <function name="from">
+            <summary>Возвращает точку начала отрезка</summary>
+            <returns type="Point*">Точка начала отрезка</returns>
+        </function>
+        <function name="to">
+            <summary>Возвращает точку конца отрезка</summary>
+            <returns type="Point*">Точка конца отрезка</returns>
+        </function>
+        <function name="set_from">
+            <summary>Устанавливает точку начала отрезка</summary>
+            <params>
+                <param name="from" type="Point*">Новая точка начала отрезка</param>
+            </params>
+        </function>
+        <function name="set_to">
+            <summary>Устанавливает точку конца отрезка</summary>
+            <params>
+                <param name="to" type="Point*">Новая точка конца отрезка</param>
+            </params>
+        </function>
+        <function name="length">
+            <summary>Возвращает длину отрезка</summary>
+            <returns type="double">Длина отрезка</returns>
+        </function>
+        <function name="truncated_length">
+            <summary>Возвращает длину отрезка, округлённую до целых</summary>
+            <returns type="size_t">Длина отрезка, оруглённая до целых</returns>
+        </function>
+        <function name="print">
+            <summary>Возвращает строковое представление отрезка</summary>
+            <returns type="wstring">Строковое представление отрезка</returns>
+        </function>
     </functions>
 </solution>

@@ -1,0 +1,28 @@
+<solution>
+    <file>path.h</file>
+    <description>Описывает класс Ломаная</description>
+    <functions>
+        <function name="append">
+            <summary>Добавляет точку в конец ломаной</summary>
+            <params>
+                <param name="point" type="Point*">Точка начала отрезка</param>
+            </params>
+        </function>
+        <function name="count">
+            <summary>Возвращает количество точек в ломаной</summary>
+            <returns type="size_t">Количество точек в ломаной</returns>
+        </function>
+        <function name="first">
+            <summary>Возвращает первую точку ломаной</summary>
+            <returns type="Point*">Первая точка ломаной</returns>
+        </function>
+        <function name="last">
+            <summary>Возвращает послднюю точку ломаной</summary>
+            <returns type="Point*">Последняя точка ломаной</returns>
+        </function>
+        <function name="print">
+            <summary>Возвращает строковое представление отрезка</summary>
+            <returns type="wstring">Строковое представление отрезка</returns>
+        </function>
+    </functions>
+</solution>

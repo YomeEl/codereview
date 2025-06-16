@@ -1,0 +1,30 @@
+<solution>
+    <file>point.h</file>
+    <description>Описывает класс Точка</description>
+    <functions>
+        <function name="x">
+            <summary>Возвращает абциссу точки</summary>
+            <returns type="double">Абцисса точки</returns>
+        </function>
+        <function name="y">
+            <summary>Возвращает ординату точки</summary>
+            <returns type="double">Ордината точки</returns>
+        </function>
+        <function name="set_x">
+            <summary>Устанавливает абциссу точки</summary>
+            <params>
+                <param name="x" type="double">Новая абцисса точки</param>
+            </params>
+        </function>
+        <function name="set_y">
+            <summary>Устанавливает ординату точки</summary>
+            <params>
+                <param name="y" type="double">Новая ордината точки</param>
+            </params>
+        </function>
+        <function name="print">
+            <summary>Возвращает строковое представление точки</summary>
+            <returns type="wstring">Строковое представление точки</returns>
+        </function>
+    </functions>
+</solution>
